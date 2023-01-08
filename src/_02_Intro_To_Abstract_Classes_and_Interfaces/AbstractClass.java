@@ -20,4 +20,10 @@ public class AbstractClass extends AbstractClassDemo implements InterfaceDemo , 
 		return 0;
 	}
 
+	@Override
+	public String faceDemo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

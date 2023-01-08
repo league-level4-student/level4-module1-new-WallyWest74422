@@ -44,7 +44,7 @@ public class TextFunkifierTest {
 
     @Test
     public void testCustomString() {
-    	MixedCapsString mcs = new MixedCapsString("This is also a test");
-        assertEquals("test a also is This", mcs.funkifyText());
+    	BackwardWordString bws = new BackwardWordString("This is also a test");
+        assertEquals("test a also is This", bws.funkifyText());
     }
 }
