@@ -2,6 +2,8 @@ package _05_Polymorphs;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+
 //import java.awt.event.MouseEvent;
 import java.util.Iterator;
 import java.util.Random;
@@ -61,37 +63,49 @@ class MovingPolymorph extends Polymorph {
 		MovingPolymorph movingMorph = new MovingPolymorph(x, y, width, height);
 		Random ran = new Random();
 		for (int i = 0; i < 30; i++) {
-			x = x + ran.nextInt(5);
-			y = y + ran.nextInt(4);
+			x = x + ran.nextInt(4);
+			y = y + ran.nextInt(3);
 		}
 		for (int i = 0; i < 30; i++) {
-			x = x - ran.nextInt(5);
-			y = y - ran.nextInt(4);
+			x = x - ran.nextInt(4);
+			y = y - ran.nextInt(3);
 		}
 
 	}
 }
 
-class MousePolymorph extends Polymorph implements MouseMotionListener{
-
-	public MousePolymorph(int x, int y, int width, int height) {
-		super(x, y, width, height);
+ class MousePolymorph extends Polymorph {
+int mouseX;
+int mouseY;
+	public MousePolymorph(int mouseX, int mouseY, int width, int height) {
+		super(mouseX, mouseY, width, height);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		g.setColor(Color.CYAN);
-		g.drawRect(x, y, width, height);
+		g.drawRect(mouseX, mouseY, width, height);
 	}
-}
+	
+	public int getMouseX(MouseEvent arg0) {
+		mouseX = arg0.getX();
+		return mouseX;
+	}
+	
+	public int getMouseY(MouseEvent arg0) {
+		mouseY = arg0.getY();
+		return mouseY;
+	}
+ }
+
 
 class MessagePolymorph extends Polymorph implements MouseListener{
 
