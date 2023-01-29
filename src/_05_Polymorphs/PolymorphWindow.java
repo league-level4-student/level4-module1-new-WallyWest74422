@@ -7,10 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -56,7 +58,7 @@ import javax.swing.Timer;
  *  clicked. Hint: MouseListener interface.
  */
 
-public class PolymorphWindow extends JPanel implements ActionListener , MouseMotionListener {
+public class PolymorphWindow extends JPanel implements ActionListener , MouseMotionListener, MouseListener {
 
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
@@ -64,10 +66,11 @@ public class PolymorphWindow extends JPanel implements ActionListener , MouseMot
     private JFrame window;
     private Timer timer;
 
-    static Polymorph bluePoly = new BluePolymorph( 50, 50, 50, 50);
-    static Polymorph redPoly = new RedPolymorph(150, 150, 50, 50);
+    static Polymorph bluePoly = new BluePolymorph(100, 100, 50, 50);
+    static Polymorph redPoly = new RedPolymorph(175, 175, 50, 50);
     static Polymorph movingPoly = new MovingPolymorph(250,250 , 50, 50);
-    static Polymorph mousePoly = new MousePolymorph( 350, 350, 50, 50);
+    static Polymorph mousePoly = new MousePolymorph(350, 350, 50, 50);
+    static Polymorph messagePoly = new MessagePolymorph(400,400, 50,50);
 //   static Polymorph bluePoly;
 //    static Polymorph redPoly;
  //   static Polymorph movingPoly;
@@ -82,6 +85,7 @@ static ArrayList<Polymorph> polyArrayList = new ArrayList<Polymorph>();
         polyArrayList.add(redPoly);
         polyArrayList.add(movingPoly);
         polyArrayList.add(mousePoly);
+        polyArrayList.add(messagePoly);
     }
 
 
@@ -96,6 +100,7 @@ static ArrayList<Polymorph> polyArrayList = new ArrayList<Polymorph>();
     	 timer = new Timer(1000 / 30, this);
          timer.start();
          window.addMouseMotionListener(this);
+         window.addMouseListener(this);
 	}
 
     public void paintComponent(Graphics g) {
@@ -115,6 +120,7 @@ static ArrayList<Polymorph> polyArrayList = new ArrayList<Polymorph>();
         repaint();
        for (int i=0; i<polyArrayList.size(); i++) {
         	polyArrayList.get(i).update();
+        	
         }
 
     }
@@ -129,6 +135,50 @@ static ArrayList<Polymorph> polyArrayList = new ArrayList<Polymorph>();
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		mousePoly.x = e.getX();
+		mousePoly.y = e.getY();
+//		System.out.println(mousePoly.x);
+//		System.out.println(mousePoly.y);
+	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println(e.getX());
+		System.out.println(e.getY());
+		if(e.getX()<470 && e.getY()>420) {
+			if(e.getY()<450 && e.getY()>400) {
+				JOptionPane.showMessageDialog(null, "Good Job! You clicked me! :)");
+			}
+		}
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
