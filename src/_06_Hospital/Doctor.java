@@ -1,6 +1,7 @@
 package _06_Hospital;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class Doctor extends Patient{
 	Patient patient = new Patient();
@@ -28,16 +29,23 @@ class GeneralPractitioner extends Doctor {
 	@Override
 	public void doMedicine() {
 		// TODO Auto-generated method stub
-patient.checkPulse();
+		for (int i =0; i<assignedPatients.size();i++) {
+			assignedPatients.get(i).checkPulse();
+			
+		}
 	}
 
-	// @Override
+	 @Override
 	public void assignPatient(Patient patient) throws DoctorFullException {
-		// TODO Auto-generated method stub
-		assignedPatients.add(patient);
-		if(assignedPatients.size()>3) {
+	if(assignedPatients.size()<3) {
+			assignedPatients.add(patient);
+			System.out.println(assignedPatients.size());
+		}else{
+			System.out.println("Exception.");
 			throw new DoctorFullException();
+			
 		}
+
 	}
 
 	@Override
@@ -63,10 +71,14 @@ patient.checkPulse();
 	@Override
 	public void assignPatient(Patient patient) throws DoctorFullException {
 		// TODO Auto-generated method stub
-assignedPatients.add(patient);
-if(assignedPatients.size()>3) {
-	throw new DoctorFullException();
-}
+		if(assignedPatients.size()<3) {
+			assignedPatients.add(patient);
+			System.out.println(assignedPatients.size());
+		}else{
+			System.out.println("Exception.");
+			throw new DoctorFullException();
+			
+		}
 	}
 
 	@Override
